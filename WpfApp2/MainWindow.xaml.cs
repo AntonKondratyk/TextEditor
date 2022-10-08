@@ -141,5 +141,13 @@ namespace WpfApp2
         {
             MessageBox.Show("Документ сохранен");
         }
+
+        private void themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Uri theme = new Uri(themes.SelectedIndex == 0 ? "White.xaml" : "Dark.xaml", UriKind.Relative);
+            ResourceDictionary themeDict = Application.LoadComponent(theme) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(themeDict);
+        }
     }
 }
